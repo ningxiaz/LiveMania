@@ -129,6 +129,37 @@ gtv.jq.TemplatePage.prototype.makeTooltip = function() {
 gtv.jq.TemplatePage.prototype.makeProgressBars = function() {
 	var templatePage = this;
 
+	templatePage.progressBar = new gtv.jq.VideoProgressBar();
+
+	var styles = {
+		container : 'statusbar',
+		elapsedTime : 'elapsedTime',
+		progressBack : 'progressbar',
+		playProgress : 'progressTime',
+		loadProgress : 'loadTime',
+		duration : 'duration',
+		tooltip : 'timeTooltip'
+	};
+
+	var callbacks = {
+		onTimeSelected : function(seconds) {
+			if (templatePage.videoControl) {
+				templatePage.videoControl.playAt(seconds);
+			}
+		}
+	};
+
+	var progressParms = {
+		createParams : {
+			containerId : 'progressbar-control',
+			styles : styles,
+			callbacks : callbacks
+		},
+		topParent : $('#progress-container')
+	};
+
+	templatePage.progressBar.makeControl(progressParms);
+
 	templatePage.fullScreenProgressBar = new gtv.jq.VideoProgressBar();
 
 	styles = {
@@ -281,6 +312,7 @@ gtv.jq.TemplatePage.prototype.makeVideoControl = function() {
 			playPauseItemFS.removeClass('video-command-paused');
 			var playPauseItem = $('#playPause');
 			playPauseItem.removeClass('video-command-paused');
+			templatePage.progressBar.resetElapsedTime();
 			templatePage.fullScreenProgressBar.resetElapsedTime();
 			templatePage.nextVideo(true);
 		},
@@ -468,6 +500,7 @@ gtv.jq.TemplatePage.prototype.makeSlider = function() {
 		}
 
 		var videoInfo = selectedItem.data('nav-data');
+		templatePage.progressBar.resetAll();
 		templatePage.fullScreenProgressBar.resetAll();
 		templatePage.updateHeader(videoInfo);
 		templatePage.updateDetails(videoInfo);
@@ -589,6 +622,7 @@ gtv.jq.TemplatePage.prototype.fadeControlsOut = function() {
 	});
 	$(templatePage.tooltipControl.holder).fadeOut(2000, function() {
 	});
+	templatePage.progressBar.hideTimeTooltip();
 	templatePage.fullScreenProgressBar.hideTimeTooltip();
 };
 
@@ -616,12 +650,16 @@ gtv.jq.TemplatePage.prototype.instanciateData = function() {
 				+ parms[0].split('=')[1] + '%20' + parms[1].split('=')[1]
 				+ '%20live&category=Music';
 	}
+
+	// alert(url);
 	
 	templatePage.items = new Array();
 
 	$.getJSON(url, function(json) {
 		if (json.length != 0) {
+			//console.log(json);
 			for(var i = 0; i < json.data.items.length; i++){
+				console.log(json.data.items[i].title);
 				var item = {
 						title: json.data.items[i].title,
 						thumb: json.data.items[i].thumbnail.sqDefault,
