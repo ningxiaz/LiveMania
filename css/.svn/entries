@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="2"
+   name=""
+   committed-date="2012-04-26T08:16:25.314591Z"
+   url="https://svn.sinaapp.com/livemania/1/css"
+   last-author="thmmrs2298@gmail.com"
+   kind="dir"
+   repos="https://svn.sinaapp.com/livemania"
+   revision="2"/>
+<entry
+   committed-rev="4"
+   name="styles.css"
+   text-time="2012-05-14T03:25:50.025800Z"
+   committed-date="2012-05-14T06:07:00.835655Z"
+   checksum="2dff775bd4ff6fc6eb12999e1d67425d"
+   last-author="thmmrs2298@gmail.com"
+   kind="file"
+   revision="4"/>
+<entry
+   committed-rev="2"
+   name="controls.css"
+   text-time="2011-02-04T06:54:58.000000Z"
+   committed-date="2012-04-26T08:16:25.314591Z"
+   checksum="fdd4930baff994b6687c389bb691e5ad"
+   last-author="thmmrs2298@gmail.com"
+   kind="file"/>
+</wc-entries>

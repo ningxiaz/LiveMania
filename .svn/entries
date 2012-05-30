@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2012-04-26T08:12:50.265662Z"
+   url="https://svn.sinaapp.com/livemania/1"
+   last-author="thmmrs2298@gmail.com"
+   kind="dir"
+   uuid="8fb6bb60-e56a-4f88-93e2-444ea7ac75d0"
+   repos="https://svn.sinaapp.com/livemania"
+   revision="1"/>
+<entry
+   committed-rev="4"
+   name="test.html"
+   text-time="2012-05-14T06:03:46.259000Z"
+   committed-date="2012-05-14T06:07:00.835655Z"
+   checksum="a9e28a802bbbd24f7f5720f33b99d297"
+   last-author="thmmrs2298@gmail.com"
+   kind="file"
+   revision="4"/>
+<entry
+   committed-rev="2"
+   name=".project"
+   text-time="2012-04-16T12:16:53.907083Z"
+   committed-date="2012-04-26T08:16:25.314591Z"
+   checksum="8e8ade88327d5da78ad54486006f83fc"
+   last-author="thmmrs2298@gmail.com"
+   kind="file"
+   revision="2"/>
+<entry
+   committed-rev="4"
+   name="results.html"
+   text-time="2012-05-14T05:09:53.785000Z"
+   committed-date="2012-05-14T06:07:00.835655Z"
+   checksum="f7af22c47d17db681c16581c5d2d5fb5"
+   last-author="thmmrs2298@gmail.com"
+   kind="file"
+   revision="4"/>
+<entry
+   name="images"
+   kind="dir"/>
+<entry
+   committed-rev="4"
+   name="fullscreen.html"
+   text-time="2012-05-14T05:09:41.172000Z"
+   committed-date="2012-05-14T06:07:00.835655Z"
+   checksum="c3209b6d61b1db9908ce1cd6f07cf435"
+   last-author="thmmrs2298@gmail.com"
+   kind="file"
+   revision="4"/>
+<entry
+   name="css"
+   kind="dir"/>
+<entry
+   committed-rev="2"
+   name="index.html"
+   text-time="2012-04-19T13:12:26.044809Z"
+   committed-date="2012-04-26T08:16:25.314591Z"
+   checksum="03fc9dc04e594ead9559cf7b64c5bafb"
+   last-author="thmmrs2298@gmail.com"
+   kind="file"
+   revision="2"/>
+<entry
+   name="js"
+   kind="dir"/>
+</wc-entries>

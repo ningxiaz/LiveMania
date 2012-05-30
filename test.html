@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Welcome to LiveMania!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="gtv-autozoom" content="off" />
+<link rel="stylesheet" href="css/styles.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script src="js/mediaelement-and-player.min.js"></script>
+<link rel="stylesheet" href="css/mediaelementplayer.css" />
+<script type="text/javascript" language="javascript">
+jQuery(document).ready(function($) {
+	var play = document.getElementById("play-button");
+	var pause = document.getElementById("pause-button");
+	
+	$('#player1').mediaelementplayer({
+		features: [],
+		success: function (mediaElement, domObject) { 
+        
+        // add event listener
+        mediaElement.addEventListener('timeupdate', function(e) {
+             
+            $('#current-time').html(mediaElement.currentTime);
+             
+        }, false);
+         
+        // call the play method
+        play.addEventListener('click', function() {
+			mediaElement.play();
+		}, false);
+
+        pause.addEventListener('click', function() {
+			mediaElement.pause();
+		}, false);
+
+        alert("done!!!");
+        mediaElement.play();
+         
+    	}
+	});
+});
+
+
+</script>
+
+
+</head>
+
+<body>
+<div class="wrapper" id="index">
+<video width="640" height="360" id="player1" preload="none"
+	type="video/youtube" src="http://www.youtube.com/watch?v=nOEw9iiopwI" />
+</div>
+<p>Current Time: <span id="current-time"></span></p>
+        <p>Controls: <a id="play-button">Play</a> | <a id="pause-button">Pause</a> </p>
+
+<div class="footer">© 2012 Ningxia Zhang. All rights reserved.</div>
+</body>
+</html>

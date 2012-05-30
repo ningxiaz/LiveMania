@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Welcome to LiveMania!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="gtv-autozoom" content="off" />
+<link rel="stylesheet" href="css/styles.css" type="text/css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+      google.load("swfobject", "2.1");
+    </script>  
+<script type="text/javascript" language="javascript">
+function onYouTubePlayerReady(playerId) { alert("here!");
+    ytplayer = document.getElementById("ytPlayer");
+    ytplayer.cueVideoById("ylLzyHk54Z0");
+  }
+
+
+	function loadPlayer() {
+    // Lets Flash from another domain call JavaScript
+    var params = { allowScriptAccess: "always" };
+    // The element id of the Flash embed
+    var atts = { id: "ytPlayer" };
+    // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
+    swfobject.embedSWF("http://www.youtube.com/apiplayer?" + "version=3&enablejsapi=1&playerapiid=player1", "videoDiv", "480", "295", "9", null, null, params, atts);
+  }
+  function _run() {
+    loadPlayer();
+  }
+  google.setOnLoadCallback(_run);
+</script>
+
+</head>
+
+<body>
+	<div class="wrapper" id="index">
+		<h1>LiveMania</h1>
+		<div id="videoDiv"></div>
+	</div>
+	<div id="results">
+	</div>
+	<div class="footer">
+		© 2012 Ningxia Zhang. All rights reserved. 
+	</div>
+</body>
+</html>
