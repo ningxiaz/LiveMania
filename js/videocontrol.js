@@ -373,6 +373,7 @@ gtv.jq.VideoControl.prototype.showVideo = function(videoInfo) {
   videoControl.isFullScreen = false;
   videoControl.control = video;
   videoControl.duration = videoInfo.duration;
+  alert(videoInfo.duration+"!!!");
   
   /*
   $(video).addClass(videoControl.styles.video)

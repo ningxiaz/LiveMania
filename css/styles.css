@@ -754,8 +754,8 @@ h3 {
 
 #content {
 	width:385px;
-	height: 410px;
-	padding:40px;
+	height: 370px;
+	padding:20px 40px;
 	font-size:18px;
 	overflow:hidden;
 	visibility: hidden;
