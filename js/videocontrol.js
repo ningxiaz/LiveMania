@@ -628,8 +628,8 @@ gtv.jq.VideoControl.prototype.getElapsedTime = function() {
  * @return {number} duration of the video in seconds.
  */
 gtv.jq.VideoControl.prototype.getDuration = function() {
-  if (this.duration) {
-	  alert(this.duration);
+	alert(this.duration+" in getDuration");
+  if (this.duration) {  
     return this.duration;
   }
 

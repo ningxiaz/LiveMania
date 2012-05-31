@@ -754,14 +754,14 @@ h3 {
 
 #content {
 	width:385px;
-	height: 370px;
+	height: 385px;
 	padding:20px 40px;
 	font-size:18px;
-	overflow:hidden;
+	overflow: hidden;
 	visibility: hidden;
 	position: absolute;
 	z-index: 10001;
-	left: 740px;
+	left: 760px;
 	top: 90px;
 	background-color:rgba(0,0,0,0.5);
 }
