@@ -23,6 +23,12 @@ jQuery(document).ready(function($) {
             $('#current-time').html(mediaElement.currentTime);
              
         }, false);
+
+        mediaElement.addEventListener('loadeddata', function(e) {
+            
+            console.log("loaded!!");
+             
+        }, false);
          
         // call the play method
         play.addEventListener('click', function() {
@@ -33,8 +39,8 @@ jQuery(document).ready(function($) {
 			mediaElement.pause();
 		}, false);
 
-        alert("done!!!");
-        mediaElement.play();
+        //alert("done!!!");
+        //mediaElement.play();
          
     	}
 	});

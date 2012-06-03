@@ -208,7 +208,7 @@ gtv.jq.VideoProgressBar.prototype.setElapsedTime = function(seconds) {
  * Sets the total duration in seconds.
  * @param {number} seconds.
  */
-gtv.jq.VideoProgressBar.prototype.setDuration = function(seconds) {
+gtv.jq.VideoProgressBar.prototype.setDuration = function(seconds) { //alert("set duration!!  "+seconds);
   if (this.container) {
     this.intDuration = seconds;
     this.duration.html(this.formatSeconds(seconds));
@@ -221,14 +221,14 @@ gtv.jq.VideoProgressBar.prototype.setDuration = function(seconds) {
  */
 gtv.jq.VideoProgressBar.prototype.updateProgress = function() {
   if (this.container) {
-    var loaded = Math.round(this.intLoadedTime * 100 / this.intDuration);
+    //var loaded = Math.round(this.intLoadedTime * 100 / this.intDuration);
     var progress = Math.round(this.intElapsedTime * 100 / this.intDuration);
-
+/*
     if (loaded >= progress) {
       this.loadPogress.css('width', (loaded - progress) + '%');
     } else {
       this.loadPogress.css('width', '0px');
-    }
+    }*/
     this.playPogress.css('width', progress + '%');
   }
 };

@@ -129,6 +129,37 @@ gtv.jq.TemplatePage.prototype.makeTooltip = function() {
 gtv.jq.TemplatePage.prototype.makeProgressBars = function() {
 	var templatePage = this;
 
+	templatePage.progressBar = new gtv.jq.VideoProgressBar();
+
+	var styles = {
+		container : 'statusbar',
+		elapsedTime : 'elapsedTime',
+		progressBack : 'progressbar',
+		playProgress : 'progressTime',
+		loadProgress : 'loadTime',
+		duration : 'duration',
+		tooltip : 'timeTooltip'
+	};
+
+	var callbacks = {
+		onTimeSelected : function(seconds) {
+			if (templatePage.videoControl) {
+				templatePage.videoControl.playAt(seconds);
+			}
+		}
+	};
+
+	var progressParms = {
+		createParams : {
+			containerId : 'progressbar-control',
+			styles : styles,
+			callbacks : callbacks
+		},
+		topParent : $('#progress-container')
+	};
+
+	templatePage.progressBar.makeControl(progressParms);
+
 	templatePage.fullScreenProgressBar = new gtv.jq.VideoProgressBar();
 
 	styles = {
@@ -165,26 +196,12 @@ gtv.jq.TemplatePage.prototype.makeVideoControl = function() {
 
 			switch (index) {
 			case 0:
-				if (templatePage.videoControl.isFullScreen) {
-					templatePage.previousVideo(true);
-				} else {
-					templatePage.videoControl.playPause();
-				}
+				templatePage.previousVideo(true);
 				break;
 			case 1:
-				if (templatePage.videoControl.isFullScreen) {
-					templatePage.videoControl.rewind();
-				} else {
-					templatePage.videoControl.fullScreen();
-				}
-				break;
-			case 2:
 				templatePage.videoControl.playPause();
 				break;
-			case 3:
-				templatePage.videoControl.fastForward();
-				break;
-			case 4:
+			case 2:
 				templatePage.nextVideo(true);
 				break;
 			}
@@ -272,15 +289,15 @@ gtv.jq.TemplatePage.prototype.makeVideoControl = function() {
 			templatePage.fullScreenProgressBar
 					.setElapsedTime(templatePage.videoControl.getElapsedTime());
 		},
-		loaded : function() {
-			templatePage.fullScreenProgressBar
-					.setDuration(templatePage.videoControl.getDuration());
+		loaded : function() {console.log("in loded!!!");
+			templatePage.fullScreenProgressBar.setDuration(templatePage.videoControl.getDuration());
 		},
 		ended : function() {
 			var playPauseItemFS = $('#playPauseFS');
 			playPauseItemFS.removeClass('video-command-paused');
 			var playPauseItem = $('#playPause');
 			playPauseItem.removeClass('video-command-paused');
+			templatePage.progressBar.resetElapsedTime();
 			templatePage.fullScreenProgressBar.resetElapsedTime();
 			templatePage.nextVideo(true);
 		},
@@ -297,7 +314,7 @@ gtv.jq.TemplatePage.prototype.makeVideoControl = function() {
 			highlightControl(playPauseItemFS);
 			highlightControl(playPauseItem);
 		},
-		onControlClicked : function(selectedItem) {
+		onControlClicked : function(selectedItem) { 
 			executeVideoCommand(selectedItem);
 			highlightControl(selectedItem);
 		},
@@ -309,19 +326,9 @@ gtv.jq.TemplatePage.prototype.makeVideoControl = function() {
 			highlightControl($('#previousFS'));
 			templatePage.previousVideo(true);
 		},
-		onRewind : function() {
-			highlightControl($('#rewindFS'));
-		},
-		onFastForward : function() {
-			highlightControl($('#fastForwardFS'));
-		},
 		onNext : function() {
 			highlightControl($('#next'));
 			templatePage.nextVideo(true);
-		},
-		onDurationChanged : function() {
-			templatePage.fullScreenProgressBar
-					.setDuration(templatePage.videoControl.getDuration());
 		},
 		onLoadProgress : function() {
 			templatePage.fullScreenProgressBar
@@ -468,6 +475,7 @@ gtv.jq.TemplatePage.prototype.makeSlider = function() {
 		}
 
 		var videoInfo = selectedItem.data('nav-data');
+		templatePage.progressBar.resetAll();
 		templatePage.fullScreenProgressBar.resetAll();
 		templatePage.updateHeader(videoInfo);
 		templatePage.updateDetails(videoInfo);
@@ -589,6 +597,7 @@ gtv.jq.TemplatePage.prototype.fadeControlsOut = function() {
 	});
 	$(templatePage.tooltipControl.holder).fadeOut(2000, function() {
 	});
+	templatePage.progressBar.hideTimeTooltip();
 	templatePage.fullScreenProgressBar.hideTimeTooltip();
 };
 
@@ -616,6 +625,8 @@ gtv.jq.TemplatePage.prototype.instanciateData = function() {
 				+ parms[0].split('=')[1] + '%20' + parms[1].split('=')[1]
 				+ '%20live&category=Music';
 	}
+
+	// alert(url);
 	
 	templatePage.items = new Array();
 
@@ -655,17 +666,14 @@ gtv.jq.TemplatePage.prototype.preloadImages = function() {
 	var images = [ 'images/tooltipTime-big.png', 'images/ico-menu.png',
 			'images/ico-menu-over.png', 'images/ico-fullscreenTop.png',
 			'images/ico-fullscreenTop-over.png', 'images/ico-details.png',
-			'images/ico-details-over.png', 'images/bt-ffFS.png',
-			'images/bt-ffFS-over.png', 'images/bt-ffFS-active.png',
-			'images/bt-fullscreen.png', 'images/bt-fullscreen-over.png',
-			'images/bt-fullscreen-active.png', 'images/bt-pause.png',
+			'images/ico-details-over.png',
+			'images/bt-pause.png',
 			'images/bt-pause-over.png', 'images/bt-pause-active.png',
 			'images/bt-pauseFS.png', 'images/bt-pauseFS-over.png',
 			'images/bt-pauseFS-active.png', 'images/bt-play.png',
 			'images/bt-play-over.png', 'images/bt-play-active.png',
 			'images/bt-playFS.png', 'images/bt-playFS-over.png',
 			'images/bt-playFS-active.png', 'images/bt-rewFS.png',
-			'images/bt-rewFS-over.png', 'images/bt-rewFS-active.png',
 			'images/bt-nextFS.png', 'images/bt-nextFS-over.png',
 			'images/bt-nextFS-active.png', 'images/bt-previousFS.png',
 			'images/bt-previousFS-over.png', 'images/bt-previousFS-active.png'];
