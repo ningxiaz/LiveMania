@@ -201,7 +201,8 @@ gtv.jq.VideoControl.prototype.makeControl = function(videoControlParms) {
       videoControl.playPause();
       return { status: 'none' };
     },
-    227: function() { // Rewind
+    227: function() { // Rewind 
+    	alert("pressed! rewind");
       if (typeof videoControl.callbacks.onRewind == 'function') {
         videoControl.callbacks.onRewind();
       }
@@ -209,6 +210,7 @@ gtv.jq.VideoControl.prototype.makeControl = function(videoControlParms) {
       return { status: 'none' };
     },
     228: function() { // Fast Forward
+    	alert("pressed! fast");
       if (typeof videoControl.callbacks.onFastForward == 'function') {
         videoControl.callbacks.onFastForward();
       }
@@ -373,14 +375,7 @@ gtv.jq.VideoControl.prototype.showVideo = function(videoInfo) {
   videoControl.isFullScreen = false;
   videoControl.control = video;
   videoControl.duration = videoInfo.duration;
-  alert(videoInfo.duration+"!!!");
-  
-  /*
-  $(video).addClass(videoControl.styles.video)
-      .attr('width', '100%')
-      .attr('height', '100%');
-  */
-
+ 
 
   if (videoControl.behaviors.startFullScreen) {
     videoControl.resizeToFullScreen();
@@ -420,21 +415,22 @@ gtv.jq.VideoControl.prototype.showVideo = function(videoInfo) {
 	    	  if (typeof videoControl.callbacks.timeUpdated == 'function') {
 	    	      videoControl.callbacks.timeUpdated();
 	    	    }
+	    	  /*
 	    	    if (videoControl.control.buffered &&
 	    	        videoControl.control.buffered.length > 0) {
 	    	      var end = videoControl.control.buffered.end();
 	    	      if (videoControl.loadedTime != end) {
 	    	        videoControl.loadedTime = end;
-	    	        onProgressCaller();
+	    	        
 	    	      }
-	    	    }
-	           
+	    	    }*/
+	    	    onProgressCaller();
 	      }, false);
 	  	
-	  	mediaElement.addEventListener('progress', function(e) {	
+	  	mediaElement.addEventListener('progress', function(e) {
 	  	    if (videoControl.control.buffered &&
 	  		        videoControl.control.buffered.length > 0) {
-	  		      videoControl.loadedTime = videoControl.control.buffered.end();
+	  		      //videoControl.loadedTime = videoControl.control.buffered.end();
 	  		    }
 	  		onProgressCaller();
 	      }, false);
@@ -444,13 +440,7 @@ gtv.jq.VideoControl.prototype.showVideo = function(videoInfo) {
 	  	    videoControl.callOnUserActivityCallback();   
 	      }, false);
 	  	
-	  	mediaElement.addEventListener('durationchange', function(e) {
-	  		if (typeof videoControl.callbacks.durationChanged == 'function') {
-	  	      videoControl.callbacks.durationChanged();
-	  	    }
-	    }, false);
-	  	
-	  	mediaElement.addEventListener('loadeddata', function(e) {
+	  	mediaElement.addEventListener('loadeddata', function(e) {console.log("loaded data");
 	  		if (typeof videoControl.callbacks.loaded == 'function') {
 	  	      videoControl.callbacks.loaded();
 	  	    }
@@ -573,7 +563,7 @@ gtv.jq.VideoControl.prototype.stop = function() {
 gtv.jq.VideoControl.prototype.rewind = function() {
   var video = this.control;
   if (video) {
-    video.currentTime = video.currentTime - 10;
+    video.currentTime -= 10;
   }
 };
 
@@ -583,7 +573,7 @@ gtv.jq.VideoControl.prototype.rewind = function() {
 gtv.jq.VideoControl.prototype.fastForward = function() {
   var video = this.control;
   if (video) {
-    video.currentTime = video.currentTime + 10;
+    video.currentTime += 10;
   }
 };
 
@@ -628,7 +618,7 @@ gtv.jq.VideoControl.prototype.getElapsedTime = function() {
  * @return {number} duration of the video in seconds.
  */
 gtv.jq.VideoControl.prototype.getDuration = function() {
-	alert(this.duration+" in getDuration");
+	alert("here!!");
   if (this.duration) {  
     return this.duration;
   }
